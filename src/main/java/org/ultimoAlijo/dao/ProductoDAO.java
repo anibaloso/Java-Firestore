@@ -29,9 +29,17 @@ public class ProductoDAO {
         List<Producto> lista= new ArrayList<>();
         ApiFuture<QuerySnapshot> futuro =db.collection(COLECCION).get();
 
-        for (QueryDocumentSnapshot doc : futuro.get().getDocuments()) {
-            Producto prod=doc.toObject(Producto.class);
-            prod.setCodigo(doc.getId());
+        QuerySnapshot querySnapshot=futuro.get();
+
+        for (QueryDocumentSnapshot doc : querySnapshot.getDocuments()) {
+
+            //Se mapea el documento a la clase producto
+            Producto prod = doc.toObject(Producto.class);
+
+            //Asignar el id del documento de firestore para facilitar la edicion o eliminacion
+            prod.setId(doc.getId());
+
+            //Agrega a la lista
             lista.add(prod);
         }
         return lista;
@@ -59,5 +67,6 @@ public class ProductoDAO {
         ApiFuture<WriteResult> futuro=docRef.delete();
         return futuro.get() != null;
     }
+
 
 }

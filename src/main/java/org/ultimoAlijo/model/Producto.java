@@ -1,6 +1,7 @@
 package org.ultimoAlijo.model;
 
 public class Producto {
+    private String id;
     private String codigo;
     private String imagen;
     private String nombre;
@@ -14,7 +15,8 @@ public class Producto {
     }
 
     public Producto(String codigo, String imagen, String nombre,int stock, String descripcion, double precio, int descuento, double calificacion) {
-        setCodigo(codigo);
+
+        this.codigo = codigo;
         this.imagen = imagen;
         this.nombre = nombre;
         this.stock = stock;
@@ -22,6 +24,14 @@ public class Producto {
         this.precio = precio;
         this.descuento = descuento;
         this.calificacion = calificacion;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCodigo() {
@@ -86,5 +96,19 @@ public class Producto {
 
     public void setCalificacion(double calificacion) {
         this.calificacion = calificacion;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto {"+"\n{" +
+                "Codigo= " + codigo + '\n' +
+                "Imagen= " + imagen +".png"+ '\n' +
+                "Nombre= " + nombre + '\n' +
+                "Stock= " + stock +"\n"+
+                "Descripcion= " + descripcion + '\n' +
+                "Precio= $" + precio + '\n' +
+                "Descuento= " + descuento + '%'+'\n' +
+                "Calificacion= " + calificacion + '\n' +
+                '}'+'\n';
     }
 }
